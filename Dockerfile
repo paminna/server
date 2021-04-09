@@ -1,4 +1,5 @@
-FROM debian:buster 
+FROM debian:buster
+
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install nginx -y
@@ -14,7 +15,13 @@ RUN apt-get install php7.3-fpm -y
 RUN apt-get install mariadb-server -y
 RUN apt-get install php7.3-mysql -y
 RUN apt-get install php7.3-mbstring -y
-COPY srcs/wp-config.php wordpress/
+RUN apt-get install php7.3-cli -y
+RUN apt-get install php7.3-db -y
+RUN apt-get install openssl -y
 
-# EXPOSE 443 80 //открытие портов
+COPY srcs/wp-config.php wordpress/
+COPY srcs/config.sample.inc.php phpMyAdmin/
+
+# EXPOSE 80 443
+
 # CMD srypt.sh //запускает все сервисы
