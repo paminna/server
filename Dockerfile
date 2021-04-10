@@ -16,12 +16,15 @@ RUN apt-get install mariadb-server -y
 RUN apt-get install php7.3-mysql -y
 RUN apt-get install php7.3-mbstring -y
 RUN apt-get install php7.3-cli -y
-RUN apt-get install php7.3-db -y
+RUN apt-get install php7.3-gd -y
+RUN apt-get install php7.3- -y
 RUN apt-get install openssl -y
 
 COPY srcs/wp-config.php wordpress/
 COPY srcs/config.sample.inc.php phpMyAdmin/
+COPY srcs/scrypt.sh .
 
-# EXPOSE 80 443
+EXPOSE 80 443
+RUN chmod +x ./scrypt.sh
 
-# CMD srypt.sh //запускает все сервисы
+CMD [ "./scrypt.sh" ]
