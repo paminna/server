@@ -9,7 +9,4 @@ echo "grant all on base.* to 'user'@'localhost' identified by 'password';" | mys
 echo "flush privileges;" | mysql
 # echo "update mysql.user set plugin='' where user='root';"| mysql -u root --skip-password
 
-# прописать:
-# можно здесь прописать скрипт для опенссл или в докерфайле
-
 bash

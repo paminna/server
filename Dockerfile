@@ -25,13 +25,13 @@ RUN apt-get install openssl -y
 COPY srcs/wp-config.php wordpress/
 COPY srcs/config.sample.inc.php phpMyAdmin/
 COPY srcs/scrypt.sh .
-COPY srcs/nginx_on.conf /etc/nginx/sites-available/
+COPY srcs/nginx.conf /etc/nginx/sites-available/
 
-COPY srcs/nginx_on.conf .
-COPY srcs/nginx_off.conf .
+# COPY srcs/nginx_on.conf .
+# COPY srcs/nginx_off.conf .
 
 RUN rm -f /etc/nginx/sites-enabled/default && rm -f /etc/nginx/sites-available/default
-RUN ln -s /etc/nginx/sites-available/nginx_on.conf /etc/nginx/sites-enabled/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/nginx-selfsigned.key -out /etc/ssl/nginx-selfsigned.crt -subj "/C=RU/ST=Russia/L=Kazan/O=School21/OU=21School/CN=myssl"
 
 EXPOSE 80 443
